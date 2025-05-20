@@ -21,7 +21,9 @@ def load_model_config(
     # Config files
     root_dir = os.path.dirname(os.path.abspath(__file__))
     configs_dir = os.path.join(root_dir, "configs")
-    model_cfg_file = os.path.join(configs_dir, model_name + ".json")
+    model_cfg_file = os.getenv(
+        "MOLLCLIP_MODEL_CONFIG", os.path.join(
+            configs_dir, model_name + ".json"))
 
     # Get config from yaml file
     if not os.path.exists(model_cfg_file):
