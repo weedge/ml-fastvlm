@@ -16,6 +16,7 @@
 import os
 import warnings
 import shutil
+import logging
 
 from transformers import AutoTokenizer, AutoModelForCausalLM, AutoConfig, BitsAndBytesConfig
 import torch
@@ -45,7 +46,7 @@ def load_pretrained_model(model_path, model_base, model_name, load_8bit=False, l
     if use_flash_attn:
         kwargs['attn_implementation'] = 'flash_attention_2'
 
-    print(f"kwargs: {kwargs}")
+    logging.info(f"kwargs: {kwargs}")
     if 'llava' in model_name.lower():
         # Load LLaVA model
         if 'lora' in model_name.lower() and model_base is None:
