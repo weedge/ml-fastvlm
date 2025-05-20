@@ -22,7 +22,7 @@ def load_model_config(
     root_dir = os.path.dirname(os.path.abspath(__file__))
     configs_dir = os.path.join(root_dir, "configs")
     model_cfg_file = os.getenv(
-        "MOLLCLIP_MODEL_CONFIG", os.path.join(
+        "MOBILE_CLIP_MODEL_CONFIG", os.path.join(
             configs_dir, model_name + ".json"))
 
     # Get config from yaml file
