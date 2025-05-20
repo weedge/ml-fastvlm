@@ -29,9 +29,9 @@ def load_pretrained_model(model_path, model_base, model_name, load_8bit=False, l
     if device != "cuda":
         kwargs['device_map'] = {"": device}
 
-    if load_8bit:
+    if load_8bit is True:
         kwargs['load_in_8bit'] = True
-    elif load_4bit:
+    elif load_4bit is True:
         kwargs['load_in_4bit'] = True
         kwargs['quantization_config'] = BitsAndBytesConfig(
             load_in_4bit=True,
@@ -45,6 +45,7 @@ def load_pretrained_model(model_path, model_base, model_name, load_8bit=False, l
     if use_flash_attn:
         kwargs['attn_implementation'] = 'flash_attention_2'
 
+    print(f"kwargs: {kwargs}")
     if 'llava' in model_name.lower():
         # Load LLaVA model
         if 'lora' in model_name.lower() and model_base is None:
